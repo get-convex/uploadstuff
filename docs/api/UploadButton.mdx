@@ -1,0 +1,11 @@
+| Prop | Required | Type | Description |
+| --- | --- | --- | --- |
+| uploadUrl | Yes | string &#124; (() => Promise&lt;string>) | Either the absolute upload URL or an async function that generates it |
+| fileTypes | No | string[] | A list of [file type specifiers]((https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept#unique_file_type_specifiers)) |
+| multiple | No | boolean | Whether the user can select multiple files to upload. Defaults to `false` |
+| onUploadProgress | No | (progress: number) => void | Called every time the combined upload progresses by at least 10 percent. `progress` % is a multiple of 10. |
+| onUploadBegin | No | (fileName: string) => void | Called at the start of each upload. |
+| onUploadComplete | No | (uploaded: UploadFileResponse[]) => Promise&lt;void> &#124; void | Called when all the files have been uploaded. |
+| onUploadError | No | (error: unknown) => void | Called if there was an error at any point in the upload process. |
+| content | No | (progress: number &#124; null) => string | Replaces the content shown on the button. `progress` % is a multiple of 10 if the upload is in progress or `null`. |
+| className | No | (progress: number &#124; null) => string | Replaces the `className` of the button. `progress` % is a multiple of 10 if the upload is in progress or `null`. |

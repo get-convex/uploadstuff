@@ -1,0 +1,21 @@
+# What is UploadStuff?
+
+UploadStuff is the easiest way to add file uploads to your full stack TypeScript application. Many services have tried to build a "better S3", but in our opinion, none found the right compromise of ownership, flexibility and safety.
+
+Doing this well involves getting three key pieces correct: **File Hosting**, **Server-side Authorization**, and **Client Experience**.
+
+## 1. Use managed file hosting
+
+UploadStuff is agnostic of the hosting provider, but we strongly recommend [Convex](convex.dev).
+
+## 2. Authorize users on YOUR server
+
+You can't let just anyone upload files to a storage provider which you pay for. You should authorize upload on the server. [Convex](convex.dev) makes this really easy.
+
+## 3. Give users a great experience
+
+UploadStuff is an open-source JavaScript and React library for uploading files from your frontend with convenient components, hooks and more. There's an `<UploadButton />` and `<UploadDropzone/>` for super easy implementation. With `useUploadFiles` you can implement your own custom component. And `uploadFiles` can be used from any JS application.
+
+## Wait, I've seen this before!
+
+UploadStuff is a play on and a fork of [UploadThing](https://uploadthing.com/).

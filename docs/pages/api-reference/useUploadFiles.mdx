@@ -1,0 +1,46 @@
+import { Tabs } from "nextra/components";
+import { UseUploadFilesExample } from "../../components/UseUploadFilesExample.tsx";
+
+# useUploadFiles
+
+A [React](https://react.dev/) hook for implementing file upload using completely custom UI.
+
+## Live demo
+
+An example use case is shown below, **try it out**!
+
+<br />
+
+<UseUploadFilesExample />
+
+## Example source code
+
+```tsx filename="src/App.tsx"
+import { useMutation } from "convex/react";
+import { useUploadFiles } from "@xixixao/uploadstuff";
+import { api } from "../convex/_generated/api";
+
+export function App() {
+  const generateUploadUrl = useMutation(api.files.generateUploadUrl);
+  const { startUpload } = useUploadFiles(generateUploadUrl);
+  return (
+    <input
+      type="file"
+      multiple
+      onChange={async (event) => {
+        const files = Array.from(event.target.files);
+        if (files.length === 0) {
+          return;
+        }
+        // optionally: do something with `files`...
+        const uploaded = await startUpload(files);
+        // optionally: do something with the response...
+      }}
+    />
+  );
+}
+```
+
+## API
+
+Check out the source code.

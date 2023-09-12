@@ -1,0 +1,90 @@
+import { Tabs } from "nextra/components";
+import { UploadButton } from "uploadstuff/react";
+import Props from "../../api/UploadButton.mdx";
+
+# UploadButton
+
+A simple button that opens the native file picker and uploads the selected files.
+
+## Live demo
+
+The button is shown below, **try it out**!
+
+<br />
+
+<UploadButton uploadUrl="https://wry-bird-327.convex.site/dontStoreImage" />
+
+## Example source code
+
+<Tabs items={['Single File', 'Multiple Files']} defaultIndex="1">
+
+<Tabs.Tab>
+
+```tsx filename="src/App.tsx"
+import { useMutation } from "convex/react";
+import { UploadButton, UploadFileResponse } from "@xixixao/uploadstuff/react";
+import { api } from "../convex/_generated/api";
+
+export function App() {
+  const generateUploadUrl = useMutation(api.files.generateUploadUrl);
+  const saveStorageId = useMutation(api.files.saveStorageId);
+  const saveAfterUpload = async (uploaded: UploadFileResponse[]) => {
+    await saveStorageId({ storageId: (uploaded[0].response as any).storageId });
+  };
+
+  return (
+    <UploadButton
+      uploadUrl={generateUploadUrl}
+      fileTypes={[".pdf", "image/*"]}
+      onClientUploadComplete={saveAfterUpload}
+      onUploadError={(error: unknown) => {
+        // Do something with the error.
+        alert(`ERROR! ${error}`);
+      }}
+    />
+  );
+}
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```tsx filename="src/App.tsx"
+import { useMutation } from "convex/react";
+import { UploadButton, UploadFileResponse } from "@xixixao/uploadstuff/react";
+import { api } from "../convex/_generated/api";
+
+export function App() {
+  const generateUploadUrl = useMutation(api.files.generateUploadUrl);
+  const saveStorageId = useMutation(api.files.saveStorageId);
+  const saveAfterUpload = async (uploaded: UploadFileResponse[]) => {
+    await saveStorageId({
+      storageIds: uploaded.map(({ response }) => ({
+        storageId: (response as any).storageId,
+      })),
+    });
+  };
+
+  return (
+    <UploadButton
+      uploadUrl={generateUploadUrl}
+      fileTypes={[".pdf", "image/*"]}
+      multiple
+      onClientUploadComplete={saveAfterUpload}
+      onUploadError={(error: unknown) => {
+        // Do something with the error.
+        alert(`ERROR! ${error}`);
+      }}
+    />
+  );
+}
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+## Props
+
+<Props />

@@ -1,0 +1,26 @@
+# uploadFiles
+
+A small helper for implementing file uploads which reports progress for each uploaded file.
+
+## Example source code
+
+```tsx filename="main.tsx"
+import { uploadFiles } from "@xixixao/uploadstuff";
+
+const uploaded = await uploadFiles({
+  // A list of File objects
+  files,
+  // The upload URL string
+  url,
+  onUploadProgress: ({ file, progress }) => {
+    // file is the file name string
+    // progress is a multiple of 10 between 10 and 100
+  },
+  onUploadBegin({ file }) {},
+});
+// The result is list of objects with
+// name:  the file name string
+// type: the file type string
+// size: the file size in bytes
+// response: whatever your upload API returns for each file
+```

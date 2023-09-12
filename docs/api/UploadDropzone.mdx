@@ -1,0 +1,13 @@
+| Prop | Required | Type | Description |
+| --- | --- | --- | --- |
+| uploadUrl | Yes | string &#124; (() => Promise&lt;string>) | Either the absolute upload URL or an async function that generates it |
+| fileTypes | No | Accept | An object of with a common [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) as keys and an array of file extensions as values (similar to [showOpenFilePicker](https://developer.mozilla.org/en-US/docs/Web/API/window/showOpenFilePicker)'s types accept option) |
+| multiple | No | boolean | Whether the user can select multiple files to upload. Defaults to `false` |
+| uploadImmediately | No | boolean | Whether the upload should start right after the user drags the file in. Defaults to `false` |
+| onUploadProgress | No | (progress: number) => void | Called every time the combined upload progresses by at least 10 percent. `progress` % is a multiple of 10. |
+| onUploadBegin | No | (fileName: string) => void | Called at the start of each upload. |
+| onUploadComplete | No | (uploaded: UploadFileResponse[]) => Promise&lt;void> &#124; void | Called when all the files have been uploaded. |
+| onUploadError | No | (error: unknown) => void | Called if there was an error at any point in the upload process. |
+| subtitle | No | string | Text, if provided, is shown below the "Choose files" line |
+| content | No | (state: UploadDropzoneState) => string | Replaces all of the content shown in the dropzone. `progress` % is a multiple of 10 if the upload is in progress or `null`. |
+| className | No | (state: UploadDropzoneState) => string | Replaces the `className` of the dropzone. `progress` % is a multiple of 10 if the upload is in progress or `null`. |
