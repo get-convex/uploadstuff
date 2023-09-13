@@ -24,6 +24,7 @@
     "./react/styles.css": "./lib/styles.css"
   },
   "scripts": {
+    "publish-docs": "npx vercel build --prod && npx vercel deploy --prebuilt --prod",
     "build-css": "tailwindcss -i ./styles.css -o ./lib/styles.css",
     "watch-css": "tailwindcss -i ./styles.css -o ./lib/styles.css --watch",
     "build": "npm run build-css && rm -rf cjs esm && tsc --outDir esm -t esnext --noEmit false --allowImportingTsExtensions false --composite false --jsx react-jsx && tsc --outDir cjs -t es6 --sourceMap --noEmit false --allowImportingTsExtensions false --composite false -m commonjs --moduleResolution node --jsx react-jsx && echo '{\"type\": \"commonjs\"}' > cjs/package.json"
