@@ -12,18 +12,21 @@
   ],
   "exports": {
     ".": {
-      "module": "./lib/index.ts",
-      "types": "./lib/index.ts"
+      "types": "./lib/index.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
     },
     "./react": {
-      "module": "./lib/react.ts",
-      "types": "./lib/react.ts"
+      "types": "./lib/react.ts",
+      "import": "./esm/react.js",
+      "require": "./cjs/react.js"
     },
     "./react/styles.css": "./lib/styles.css"
   },
   "scripts": {
-    "build": "tailwindcss -i ./styles.css -o ./lib/styles.css",
-    "watch": "tailwindcss -i ./styles.css -o ./lib/styles.css --watch"
+    "build-css": "tailwindcss -i ./styles.css -o ./lib/styles.css",
+    "watch-css": "tailwindcss -i ./styles.css -o ./lib/styles.css --watch",
+    "build": "npm run build-css && rm -rf cjs esm && tsc --outDir esm -t esnext --noEmit false --allowImportingTsExtensions false --composite false --jsx react-jsx && tsc --outDir cjs -t es6 --sourceMap --noEmit false --allowImportingTsExtensions false --composite false -m commonjs --moduleResolution node --jsx react-jsx && echo '{\"type\": \"commonjs\"}' > cjs/package.json"
   },
   "dependencies": {
     "tailwind-merge": "^1.14.0"
