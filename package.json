@@ -1,5 +1,5 @@
 {
-  "name": "uploadstuff",
+  "name": "@xixiao/uploadstuff",
   "module": "lib/index.ts",
   "types": "lib/index.ts",
   "type": "module",
