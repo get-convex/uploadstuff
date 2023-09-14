@@ -1,9 +1,10 @@
 {
   "name": "@xixixao/uploadstuff",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "xixixao",
   "license": "MIT",
   "repository": "https://github.com/xixixao/uploadstuff",
+  "homepage": "https://uploadstuff.dev",
   "module": "lib/index.ts",
   "types": "lib/index.ts",
   "type": "module",
