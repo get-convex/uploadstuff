@@ -1,6 +1,6 @@
 {
   "name": "@xixixao/uploadstuff",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "xixixao",
   "license": "MIT",
   "module": "lib/index.ts",
@@ -8,6 +8,8 @@
   "type": "module",
   "files": [
     "lib",
+    "esm",
+    "cjs",
     "README.md"
   ],
   "exports": {
