@@ -6,14 +6,14 @@ const config: DocsThemeConfig = {
     <span style={{ fontWeight: "bold", fontSize: "1.5rem" }}>uploadstuff</span>
   ),
   project: {
-    link: "https://github.com/shuding/nextra-docs-template",
+    link: "https://github.com/xixixao/uploadstuff",
   },
   chat: {
-    link: "https://discord.com",
+    link: "https://www.convex.dev/community",
   },
-  docsRepositoryBase: "https://github.com/shuding/nextra-docs-template",
+  docsRepositoryBase: "https://github.com/xixixao/uploadstuff/tree/main/docs",
   footer: {
-    text: "Nextra Docs Template",
+    text: "UploadStuff © 2023 xixixao. All rights reserved.",
   },
 };
 
