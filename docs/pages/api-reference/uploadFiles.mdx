@@ -16,7 +16,9 @@ const uploaded = await uploadFiles({
     // file is the file name string
     // progress is a multiple of 10 between 10 and 100
   },
-  onUploadBegin({ file }) {},
+  onUploadBegin: ({ file }) => {
+    // ...
+  },
 });
 // The result is list of objects with
 // name:  the file name string

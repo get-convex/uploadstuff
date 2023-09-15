@@ -12,6 +12,9 @@ const config: DocsThemeConfig = {
     link: "https://www.convex.dev/community",
   },
   docsRepositoryBase: "https://github.com/xixixao/uploadstuff/tree/main/docs",
+  gitTimestamp() {
+    return <></>;
+  },
   footer: {
     text: "UploadStuff © 2023 xixixao. All rights reserved.",
   },
