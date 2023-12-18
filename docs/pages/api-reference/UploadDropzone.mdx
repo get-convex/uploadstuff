@@ -4,7 +4,8 @@ import Props from "../../api/UploadDropzone.mdx";
 
 # UploadDropzone
 
-A simple button that opens the native file picker and uploads the selected files.
+A simple button that opens the native file picker and uploads the selected
+files.
 
 ## Live demo
 
@@ -40,7 +41,7 @@ export function App() {
     <UploadDropzone
       uploadUrl={generateUploadUrl}
       fileTypes={[".pdf", "image/*"]}
-      onClientUploadComplete={saveAfterUpload}
+      onUploadComplete={saveAfterUpload}
       onUploadError={(error: unknown) => {
         // Do something with the error.
         alert(`ERROR! ${error}`);
@@ -76,7 +77,7 @@ export function App() {
       uploadUrl={generateUploadUrl}
       fileTypes={[".pdf", "image/*"]}
       multiple
-      onClientUploadComplete={saveAfterUpload}
+      onUploadComplete={saveAfterUpload}
       onUploadError={(error: unknown) => {
         // Do something with the error.
         alert(`ERROR! ${error}`);
