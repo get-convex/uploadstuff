@@ -40,7 +40,10 @@ export function App() {
   return (
     <UploadDropzone
       uploadUrl={generateUploadUrl}
-      fileTypes={[".pdf", "image/*"]}
+      fileTypes={{
+        "application/pdf": [".pdf"],
+        "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+      }}
       onUploadComplete={saveAfterUpload}
       onUploadError={(error: unknown) => {
         // Do something with the error.
@@ -75,7 +78,10 @@ export function App() {
   return (
     <UploadDropzone
       uploadUrl={generateUploadUrl}
-      fileTypes={[".pdf", "image/*"]}
+      fileTypes={{
+        "application/pdf": [".pdf"],
+        "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+      }}
       multiple
       onUploadComplete={saveAfterUpload}
       onUploadError={(error: unknown) => {
