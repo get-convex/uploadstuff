@@ -2,17 +2,22 @@ import { Steps, Tabs } from "nextra/components";
 
 # Getting started on the server
 
-We'll be using [Convex](https://convex.dev) to implement our file storage, but you could use any means of generating an upload URL, as long as you can authorize it.
+We'll be using [Convex](https://convex.dev) to implement our file storage, but
+you could use any means of generating an upload URL, as long as you can
+authorize it.
 
 ## Setting up Convex functions for file upload
 
-We'll use 2 [mutations](https://docs.convex.dev/functions/mutation-functions): The first one generates an upload URL, the second one saves the file storage ID in our database.
+We'll use 2 [mutations](https://docs.convex.dev/functions/mutation-functions):
+The first one generates an upload URL, the second one saves the file storage ID
+in our database.
 
 <Steps>
 
 ### Create a mutation that generates an upload URL
 
-This mutation basically defines an endpoint that gives our UI a URL to upload files to. It can also:
+This mutation basically defines an endpoint that gives our UI a URL to upload
+files to. It can also:
 
 - Verify that the user is authorized to upload files
 
@@ -36,9 +41,8 @@ export const generateUploadUrl = mutation({
 
 ### Create a mutation that saves the file storage ID
 
-The second endpoint will be called after the file upload
-is complete, to save the uploaded files' storage IDs
-and any metadata in our database. It can also:
+The second endpoint will be called after the file upload is complete, to save
+the uploaded files' storage IDs and any metadata in our database. It can also:
 
 - Reverify that the user is still authorized to upload the file
 - Limit the number of uploaded files
@@ -55,9 +59,7 @@ import { mutation } from "./_generated/server";
 export const saveStorageId = mutation({
   // You can customize these as you like
   args: {
-    uploaded: v.object({
-      storageId: v.string(),
-    }),
+    storageId: v.string("_storage"),
     // other args...
   },
   handler: async (ctx, args) => {
@@ -66,12 +68,12 @@ export const saveStorageId = mutation({
 
     // Save the storageId to the database using `insert`
     ctx.db.insert("someTable", {
-      storageId: args.uploaded.storageId,
+      storageId: args.storageId,
       // ...
     });
     // or `patch`/`replace`
     ctx.db.patch(someId, {
-      storageId: args.uploaded.storageId,
+      storageId: args.storageId,
       // ...
     });
   },
@@ -89,7 +91,7 @@ import { mutation } from "./_generated/server";
 export const saveStorageIds = mutation({
   // You can customize these as you like
   args: {
-    uploaded: v.array(
+    storageIds: v.array(
       v.object({
         storageId: v.string(),
       })
@@ -120,10 +122,11 @@ export const saveStorageIds = mutation({
 
 </Steps>
 
-In your project you can give these mutations more specific names based on your use case,
-and you can create multiple pairs of mutations for different file uploading use cases
-you might have in your app.
+In your project you can give these mutations more specific names based on your
+use case, and you can create multiple pairs of mutations for different file
+uploading use cases you might have in your app.
 
-With these mutations in place, you're ready to use one of the provided APIs to implement file uploading in your app's UI.
+With these mutations in place, you're ready to use one of the provided APIs to
+implement file uploading in your app's UI.
 
 [Build your UI](/getting-started#build-your-ui)
