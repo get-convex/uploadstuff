@@ -60,9 +60,9 @@ import { api } from "../convex/_generated/api";
 
 export function App() {
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
-  const saveStorageId = useMutation(api.files.saveStorageId);
+  const saveStorageIds = useMutation(api.files.saveStorageIds);
   const saveAfterUpload = async (uploaded: UploadFileResponse[]) => {
-    await saveStorageId({
+    await saveStorageIds({
       storageIds: uploaded.map(({ response }) => ({
         storageId: (response as any).storageId,
       })),
