@@ -22,7 +22,6 @@ files to. It can also:
 - Verify that the user is authorized to upload files
 
 ```ts filename="convex/files.ts"
-import { v } from "convex/values";
 import { mutation } from "./_generated/server";
 
 export const generateUploadUrl = mutation({
@@ -59,7 +58,7 @@ import { mutation } from "./_generated/server";
 export const saveStorageId = mutation({
   // You can customize these as you like
   args: {
-    storageId: v.string("_storage"),
+    storageId: v.id("_storage"),
     // other args...
   },
   handler: async (ctx, args) => {
