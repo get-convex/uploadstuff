@@ -1,17 +1,20 @@
-const path = require("path");
+import nextra from "nextra";
 
-const withNextra = require("nextra")({
+import path from "path";
+
+const withNextra = nextra({
   theme: "nextra-theme-docs",
   themeConfig: "./theme.config.tsx",
+  defaultShowCopyCode: true,
 });
 
-module.exports = withNextra({
+export default withNextra({
   experimental: {
     externalDir: true,
   },
   webpack: (
     config,
-    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack },
   ) => {
     // Important: return the modified config
     return {
@@ -21,13 +24,13 @@ module.exports = withNextra({
         fallback: {
           "react/jsx-runtime": "react/jsx-runtime.js",
           "react/jsx-dev-runtime": path.resolve(
-            __dirname,
-            "node_modules/react/jsx-dev-runtime.js"
+            import.meta.dirname,
+            "node_modules/react/jsx-dev-runtime.js",
           ),
-          react: path.resolve(__dirname, "node_modules/react"),
+          react: path.resolve(import.meta.dirname, "node_modules/react"),
           "react-dropzone": path.resolve(
-            __dirname,
-            "node_modules/react-dropzone"
+            import.meta.dirname,
+            "node_modules/react-dropzone",
           ),
         },
       },

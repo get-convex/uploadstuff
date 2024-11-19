@@ -16,7 +16,7 @@ const config: DocsThemeConfig = {
     return <></>;
   },
   footer: {
-    text: "UploadStuff © 2023 xixixao. All rights reserved.",
+    content: "UploadStuff © 2023 xixixao. All rights reserved.",
   },
 };
 
