@@ -17,6 +17,9 @@ export function UploadDropzone(props: {
   // Either the absolute upload URL or an async function that generates it
   uploadUrl: string | (() => Promise<string>);
 
+  // The HTTP method to use for the upload, either `POST` or `PUT`. Defaults to `POST`.
+  method?: "POST" | "PUT";
+
   /// Optional functionality props
 
   // An object of with a common [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) as keys and an array of file extensions as values (similar to [showOpenFilePicker](https://developer.mozilla.org/en-US/docs/Web/API/window/showOpenFilePicker)'s types accept option)
@@ -50,6 +53,7 @@ export function UploadDropzone(props: {
 
   const [uploadProgress, setUploadProgress] = useState(0);
   const { startUpload, isUploading } = useUploadFiles(props.uploadUrl, {
+    method: props.method,
     onUploadComplete: async (res) => {
       setFiles([]);
       await props.onUploadComplete?.(res);

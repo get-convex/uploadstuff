@@ -10,6 +10,9 @@ export function UploadButton(props: {
   // Either the absolute upload URL or an async function that generates it
   uploadUrl: string | (() => Promise<string>);
 
+  // The HTTP method to use for the upload, either `POST` or `PUT`. Defaults to `POST`.
+  method?: "POST" | "PUT";
+
   /// Optional functionality props
 
   // A list of [file type specifiers]((https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept#unique_file_type_specifiers))
@@ -38,6 +41,7 @@ export function UploadButton(props: {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const { startUpload, isUploading } = useUploadFiles(props.uploadUrl, {
+    method: props.method,
     onUploadComplete: async (res) => {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";

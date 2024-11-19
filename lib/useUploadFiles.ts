@@ -5,6 +5,7 @@ import { UploadFileResponse, uploadFiles } from "./uploadFiles";
 export const useUploadFiles = (
   uploadUrl: string | (() => Promise<string>),
   opts?: {
+    method?: "POST" | "PUT";
     onUploadComplete?: (res: UploadFileResponse[]) => Promise<void>;
     onUploadProgress?: (p: number) => void;
     onUploadError?: (e: unknown) => void;
@@ -26,6 +27,7 @@ export const useUploadFiles = (
       const res = await uploadFiles({
         files,
         url,
+        method: opts?.method,
         onUploadProgress: ({ file, progress }) => {
           if (opts?.onUploadProgress == null) {
             return;

@@ -8,6 +8,7 @@ export type UploadFileResponse = {
 export const uploadFiles = async (args: {
   url: string;
   files: File[];
+  method?: "POST" | "PUT";
   onUploadBegin?: ({ file }: { file: string }) => void;
   onUploadProgress?: ({
     file,
@@ -22,7 +23,7 @@ export const uploadFiles = async (args: {
       const response = await fetchWithProgress(
         args.url,
         {
-          method: "POST",
+          method: args.method ?? "POST",
           body: file,
           headers: new Headers({
             "Content-Type": getMimeType(file),
