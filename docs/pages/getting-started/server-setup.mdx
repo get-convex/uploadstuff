@@ -22,7 +22,6 @@ files to. It can also:
 - Verify that the user is authorized to upload files
 
 ```ts filename="convex/files.ts"
-import { v } from "convex/values";
 import { mutation } from "./_generated/server";
 
 export const generateUploadUrl = mutation({
@@ -59,7 +58,7 @@ import { mutation } from "./_generated/server";
 export const saveStorageId = mutation({
   // You can customize these as you like
   args: {
-    storageId: v.string("_storage"),
+    storageId: v.id("_storage"),
     // other args...
   },
   handler: async (ctx, args) => {
@@ -67,12 +66,12 @@ export const saveStorageId = mutation({
     // ...
 
     // Save the storageId to the database using `insert`
-    ctx.db.insert("someTable", {
+    await ctx.db.insert("someTable", {
       storageId: args.storageId,
       // ...
     });
     // or `patch`/`replace`
-    ctx.db.patch(someId, {
+    await ctx.db.patch(someId, {
       storageId: args.storageId,
       // ...
     });
@@ -103,12 +102,12 @@ export const saveStorageIds = mutation({
     // ...
 
     // Save the storageId to the database using `insert`
-    ctx.db.insert("someTable", {
+    await ctx.db.insert("someTable", {
       storageIds: args.storageIds.map(({ storageId }) => storageId),
       // ...
     });
     // or `patch`/`replace`
-    ctx.db.patch(someId, {
+    await ctx.db.patch(someId, {
       storageIds: args.storageIds.map(({ storageId }) => storageId),
       // ...
     });
