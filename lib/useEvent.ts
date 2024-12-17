@@ -1,5 +1,5 @@
 // Ripped from https://github.com/scottrippey/react-use-event-hook
-import { useInsertionEffect, useLayoutEffect, useRef } from "react";
+import { useInsertionEffect, useLayoutEffect, useRef } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyFunction = (...args: any[]) => any;
@@ -10,7 +10,7 @@ const noop = () => void 0;
  * Make use of useInsertionEffect if available.
  */
 const useInsertionEffect_ =
-  typeof window !== "undefined"
+  typeof window !== 'undefined'
     ? // useInsertionEffect is available in React 18+
       useInsertionEffect || useLayoutEffect
     : noop;
@@ -35,7 +35,7 @@ export function useEvent<TCallback extends AnyFunction>(
 
   // Create a stable callback that always calls the latest callback:
   // using useRef instead of useCallback avoids creating and empty array on every render
-  const stableRef = useRef<TCallback>();
+  const stableRef = useRef<TCallback | null>(null);
   if (!stableRef.current) {
     stableRef.current = function (this: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return, prefer-rest-params, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
@@ -52,6 +52,6 @@ export function useEvent<TCallback extends AnyFunction>(
  */
 function useEvent_shouldNotBeInvokedBeforeMount() {
   throw new Error(
-    "INVALID_USEEVENT_INVOCATION: the callback from useEvent cannot be invoked before the component has mounted."
+    'INVALID_USEEVENT_INVOCATION: the callback from useEvent cannot be invoked before the component has mounted.'
   );
 }
