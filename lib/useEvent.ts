@@ -35,7 +35,7 @@ export function useEvent<TCallback extends AnyFunction>(
 
   // Create a stable callback that always calls the latest callback:
   // using useRef instead of useCallback avoids creating and empty array on every render
-  const stableRef = useRef<TCallback>();
+  const stableRef = useRef<TCallback | null>(null);
   if (!stableRef.current) {
     stableRef.current = function (this: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return, prefer-rest-params, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
